@@ -1,0 +1,54 @@
+Parser Grammar (Context Free)
+=============================
+< program >  ::= < statement > 
+                 | < program > < statement > 
+
+
+< statement > ::= < assignment > 
+                   | < expression >  
+                   | < Input >
+
+< assignment > ::= VARIABLE EQUAL < expression > 
+ 
+< Expression > ::=  < Expression > PLUS < Term > 
+                    | < Expression > MINUS < Term > 
+                    | < Term >  
+
+< Term >        ::= < Term > TIMES < Factor > 
+                    | < Term > DIVIDE < Factor > 
+                    | < Factor > 
+
+  
+< Factor >      ::= < Exponent > POW < Factor > 
+                    | < Exponent > 
+
+
+< Exponent >    ::= LPAREN < Expression > RPAREN
+                     | VARIABLE
+                     | < Number > 
+
+< Input > ::= INPUT VARIABLE
+
+
+< number >  ::= INTLIT
+                | FLOATLIT
+
+ 
+ 
+
+Lexer Grammar (Regular)
+=======================
+Token       Rule
+-----       -----
+EQUAL       =
+PLUS        +
+MINUS       -
+TIMES       *
+DIVIDE      /
+POW         ^ | **
+LPAREN      (
+RPAREN      )
+VARIABLE    ([a-zA-Z]|_)[a-zA-Z0-9_]*
+INTLIT      a string of digits
+FLOATLIST   INTLIT . INTLIT
+INPUT       input
